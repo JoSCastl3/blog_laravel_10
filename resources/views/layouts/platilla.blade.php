@@ -11,8 +11,16 @@
     {{-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> --}}
     {{-- @vite('resources/css/app.css') --}}
     <title>@yield('title')</title>
+    <style>
+        .active{
+            color: red;
+            font-weight: bold;
+        }
+    </style>
 </head>
+@include('layouts.partials.header')
 <body>
 @yield('content')
 </body>
+@include('layouts.partials.footer')
 </html>

@@ -51,7 +51,7 @@ class CursoController extends Controller
             // 'descripcion'=> $request->descripcion,
             // 'categoria'=>$request->categoria
         //]);
-        return redirect()->route("cursos.show", $curso->id); //No es necesario poner el id
+        return redirect()->route("cursos.show", $curso); //No es necesario poner el id
     }
     public function show(Curso $curso)
     {
@@ -68,7 +68,7 @@ class CursoController extends Controller
     {
         return view('cursos.edit', compact("curso"));
     }
-    public  function update(StoreCurso $request ,Curso $curso){        
+    public  function update(Request $request ,Curso $curso){        
         // $curso->name = $request->name;
         // $curso->descripcion = $request->descripcion;
         // $curso->categoria = $request->categoria;
@@ -76,8 +76,15 @@ class CursoController extends Controller
         // 
 
         // Actuliza por asignacion masica video 20
+        $request->validate([
+        'name'=>'required|min:3',
+            'descripcion'=>'required',
+            'slug'=>'required|unique:cursos,slug,' . $curso->id,
+            'categoria'=>['required','min:3'], //La coma al final no deberia de dar problema
+        ]);
+
         $curso->update($request->all());
-        return redirect()->route("cursos.show", $curso->id);
+        return redirect()->route("cursos.show", $curso);
     } 
 
     public function destroy(Curso $curso){

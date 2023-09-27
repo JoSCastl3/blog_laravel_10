@@ -39,6 +39,16 @@
             <br>
         @enderror
         <br>
+        <label>Slug page:
+            <br>
+             <input type="text" name="slug" value="{{old("slug",$curso->slug)}}">
+           </label>
+           @error('slug')
+           <br>
+               <span>*{{$message}}</span>           
+               <br>
+           @enderror
+           <br>
         <br>
         <button type="submit">Actualizar formualario</button>
     </form>

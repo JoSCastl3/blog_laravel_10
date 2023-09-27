@@ -16,4 +16,8 @@ class curso extends Model
     // protected $guarded=['status'];
     // En nuestor caso que no tenemos un campo protegido pues se deja el array vacio
     protected $guarded=[];
+    //Metodo que sirve para pararle a la URL un nombre apropiado
+    public function getRouteKeyName(){
+        return 'slug';
+    } 
 }
