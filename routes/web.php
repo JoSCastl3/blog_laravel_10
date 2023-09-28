@@ -1,10 +1,11 @@
 <?php
 
-use App\Mail\ContactanosController;
+use App\Http\Controllers\ContactanosController as ControllersContactanosController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Mail;
+// use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CursoController;
+use App\Http\Controllers\ContactanosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,8 +48,11 @@ Route::resource('cursos',CursoController::class);
 //  Route::resource('asignaturas',CursoController::class)->parameters(["asignaturas"=>"curso"])->names("cursos");
 //Primer parametro URL, segundo su nombre
 Route::view('nosotros','nosotros')->name('nosotros');
-Route::get('contactanos',function(){
-    //importar la librería de mail, que no se importa ella sola
-    Mail::to('jose@prueba.com')->send(new ContactanosController);
-    return "Mensaje enviado"; //No es necesario especificar la ruta con solo escribir controller se va
-})->name('contactanos');
+Route::get('contactanos',[ContactanosController::class,'index'])->name('contactanos.index');
+Route::post('contactanos',[ContactanosController::class,'store'])->name('contactanos.store');
+
+// Route::get('contactanos',function(){
+//     //importar la librería de mail, que no se importa ella sola
+//     Mail::to('jose@prueba.com')->send(new ContactanosController);
+//     return "Mensaje enviado"; //No es necesario especificar la ruta con solo escribir controller se va
+// })->name('contactanos');

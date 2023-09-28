@@ -18,9 +18,11 @@ class ContactanosController extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+
+     public $contacto;
+    public function __construct($request)
     {
-        //
+        $this->contacto=$request;
     }
 
     /**
